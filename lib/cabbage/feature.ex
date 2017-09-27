@@ -165,8 +165,6 @@ defmodule Cabbage.Feature do
     scenarios = Module.get_attribute(env.module, :scenarios) || []
     steps = Module.get_attribute(env.module, :steps) || []
     tags = Module.get_attribute(env.module, :tags) || []
-    test_number = 0
-
 
     Enum.with_index(scenarios) |> Enum.each(fn {scenario, test_number} ->
       quote generated: true do
@@ -195,7 +193,7 @@ defmodule Cabbage.Feature do
           end
         end
       end
-    end
+    end)
   end
 
   def compile_step(step, steps, scenario_name) when is_list(steps) do
